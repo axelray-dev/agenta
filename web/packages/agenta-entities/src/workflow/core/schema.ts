@@ -291,13 +291,20 @@ export const workflowSchema = z
         workflow_variant_id: z.string().nullable().optional(),
 
         // Workflow hierarchy slugs (from revision responses). The backend
-        // surfaces these on revision payloads alongside the IDs, but earlier
-        // schema versions stripped them. Required for emitting evaluator
-        // references on playground chain runs — the trace storage layer
-        // identifies evaluator runs by slug (via `references.evaluator.slug`),
-        // and we want to write the parent workflow's slug, not the revision's.
+        // surfaces `workflow_slug` / `workflow_variant_slug` on revision
+        // payloads alongside the IDs so callers can identify the parent
+        // workflow/variant without a second lookup. Required for emitting
+        // evaluator references on playground chain runs — the trace storage
+        // layer identifies evaluator runs by slug (via
+        // `references.evaluator.slug`) and we want to write the parent
+        // workflow's slug, not the revision's. `artifact_slug` /
+        // `variant_slug` are the equivalent fields scoped to the
+        // generic artifact/variant hierarchy (used by non-workflow
+        // revisioned resources).
         workflow_slug: z.string().nullable().optional(),
         workflow_variant_slug: z.string().nullable().optional(),
+        artifact_slug: z.string().nullable().optional(),
+        variant_slug: z.string().nullable().optional(),
 
         // Commit fields
         /** Commit message (from CommitDBA on revision responses) */

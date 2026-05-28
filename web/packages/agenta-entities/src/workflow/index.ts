@@ -145,6 +145,8 @@ export {
     queryWorkflowRevisionsByWorkflow,
     queryWorkflowRevisionsByWorkflows,
     queryWorkflowRevisions,
+    // Retrieve (single revision by ref — slug/version/id)
+    retrieveWorkflowRevision,
     // Fetch (single revision by ID)
     fetchWorkflowRevisionById,
     // Inspect (resolve full schema)
